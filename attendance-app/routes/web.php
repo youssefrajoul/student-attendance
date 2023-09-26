@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\StudentsCtrl;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -13,6 +14,13 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', [StudentsCtrl::class, 'home']);
+
+Route::get('/form', [StudentsCtrl::class, 'showForm'])->name('form.show');
+
+Route::post('/form', [StudentsCtrl::class, 'processForm'])->name('form.process');
+
+Route::get('/delete', [StudentsCtrl::class, 'showDelete'])->name('delete.show');
+
+Route::post('/delete', [StudentsCtrl::class, 'processDelete'])->name('delete.process');
+
